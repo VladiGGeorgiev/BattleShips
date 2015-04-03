@@ -22,7 +22,6 @@ namespace Battleships.WebServices
         {
             ConfigureAuth(app);
 
-            // GlobalConfiguration.Configuration.DependencyResolver = 
             app.UseNinjectMiddleware(this.CreateKernel).UseNinjectWebApi(GlobalConfiguration.Configuration);
         }
 
@@ -38,9 +37,9 @@ namespace Battleships.WebServices
 
         private void RegisterMappings(IKernel kernel)
         {
+			// TODO: Make interface for the ApplicationDbContext!
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
             kernel.Bind<IBattleshipsData>().To<BattleshipsData>();
-            // .WithConstructorArgument("context", c => new ApplicationDbContext());
         }
     }
 }
