@@ -5,8 +5,6 @@
     using System.Data.Entity;
 
     using Battleships.Data.Repositories;
-
-    using Battleships.Data.Repositories;
     using Battleships.Models;
 
     public class BattleshipsData : IBattleshipsData
