@@ -7,7 +7,7 @@
     {
         IRepository<ApplicationUser> Users { get; }
 
-        IRepository<Game> Games { get; }
+        GamesRepository Games { get; }
 
         IRepository<Ship> Ships { get; }
 

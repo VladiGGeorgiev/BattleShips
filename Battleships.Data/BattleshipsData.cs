@@ -25,9 +25,9 @@
             get { return this.GetRepository<ApplicationUser>(); }
         }
 
-        public IRepository<Game> Games
+        public GamesRepository Games
         {
-            get { return this.GetRepository<Game>(); }
+            get { return (GamesRepository)this.GetRepository<Game>(); }
         }
 
         public IRepository<Ship> Ships
@@ -51,7 +51,7 @@
                     typeOfRepository = typeof(GamesRepository);
                 }
 
-                var repository = Activator.CreateInstance(typeof(GenericRepository<T>), this.context);
+                var repository = Activator.CreateInstance(typeOfRepository, this.context);
                 this.repositories.Add(type, repository);
             }
 
