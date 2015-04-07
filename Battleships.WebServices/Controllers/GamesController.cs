@@ -3,19 +3,23 @@
     using System;
     using System.Linq;
     using System.Text;
+    using System.Threading;
     using System.Web.Http;
 
     using Battleships.Data;
     using Battleships.Models;
+    using Battleships.WebServices.Infrastructure;
     using Battleships.WebServices.Models;
-
-    using Microsoft.AspNet.Identity;
 
     [Authorize]
     public class GamesController : BaseApiController
     {
-        public GamesController(IBattleshipsData data) : base(data)
+        private IUserIdProvider userIdProvider;
+        
+        public GamesController(IBattleshipsData data, IUserIdProvider userIdProvider) 
+            : base(data)
         {
+            this.userIdProvider = userIdProvider;
         }
 
         public IHttpActionResult GetGamesCount()
@@ -28,7 +32,7 @@
         [ActionName("create")]
         public IHttpActionResult CreateGame()
         {
-            var userId = this.User.Identity.GetUserId();
+            var userId = this.userIdProvider.GetUserId();
             var game = new Game
             {
                 PlayerOneId = userId,
@@ -73,7 +77,7 @@
                 return this.NotFound();
             }
 
-            var userId = this.User.Identity.GetUserId();
+            var userId = this.userIdProvider.GetUserId();
             if (game.PlayerOneId == userId)
             {
                 return this.BadRequest("You can not join in your game!");
@@ -110,7 +114,7 @@
                 return this.NotFound();
             }
 
-            var userId = this.User.Identity.GetUserId();
+            var userId = this.userIdProvider.GetUserId();
             if (game.PlayerOneId != userId && game.PlayerTwoId != userId)
             {
                 return this.BadRequest("You can't make turn in this game!");

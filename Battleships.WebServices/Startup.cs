@@ -6,9 +6,14 @@ namespace Battleships.WebServices
 {
     using System.Data.Entity;
     using System.Reflection;
+    using System.Security.Principal;
     using System.Web.Http;
+    using System.Web.Routing;
 
     using Battleships.Data;
+    using Battleships.WebServices.Infrastructure;
+
+    using Microsoft.AspNet.Identity;
 
     using Ninject;
     using Ninject.Web.Common.OwinHost;
@@ -37,9 +42,11 @@ namespace Battleships.WebServices
 
         private void RegisterMappings(IKernel kernel)
         {
-			// TODO: Make interface for the ApplicationDbContext!
+            // TODO: Make interface for the ApplicationDbContext!
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
             kernel.Bind<IBattleshipsData>().To<BattleshipsData>();
+            kernel.Bind<IUserIdProvider>().To<AspNetUserIdProvider>();
+            
         }
     }
 }
