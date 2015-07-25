@@ -11,6 +11,7 @@
     using Microsoft.Owin.Security.OAuth;
 
     using Owin;
+    using Battleships.Data;
 
     public partial class Startup
     {

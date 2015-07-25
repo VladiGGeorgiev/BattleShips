@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Battleships.WebServices.Models;
+using Battleships.Models;
 
 namespace Battleships.WebServices.Providers
 {

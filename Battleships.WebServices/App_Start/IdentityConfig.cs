@@ -1,7 +1,8 @@
 ﻿namespace Battleships.WebServices
 {
+    using Battleships.Data;
+    using Battleships.Models;
     using Battleships.WebServices.Models;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
